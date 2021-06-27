@@ -9,6 +9,91 @@ export const Main = () => {
 
     const [showLink, setShowLink] = useState("hide");
     const [showSearchInput, setShowSearchInput] = useState("hideInput");
+    const [showAboutUs , setShowAboutUs ] = useState('hideAboutUs');
+    const [showCategories , setShowCategories ] = useState('hideCategories');
+    const [showHelp , setShowHelp ] = useState('hideHelp');
+    const [showPay , setShowPay ] = useState('hidePay');
+    const [classesForMain , setClassesForMain ] = useState('mainWrapper');
+
+    const handleShowPay = () => {
+        if(window.innerWidth < 925){
+            if(showPay === "hidePay"){
+                setShowPay("showPay")
+                console.log('showPay')
+            } else{
+                setShowPay("hidePay")  
+            }
+        }
+    }
+    const handleShowHelp = () => {
+        if(window.innerWidth < 925){
+            if(showHelp === "hideHelp"){
+                setShowHelp("showHelp")
+                console.log('showHelp')
+            } else{
+                setShowHelp("hideHelp")  
+            }
+        }
+    }
+    const handleShowCategories = () => {
+        if(window.innerWidth < 925){
+            if(showCategories === "hideCategories"){
+                setShowCategories("showCategories")
+                console.log('ShowCategories')
+            } else{
+                setShowCategories("hideCategories")  
+            }
+        }
+    }
+    const handleShowAboutUs = () => {
+        if(window.innerWidth < 925){
+            if(showAboutUs === "hideAboutUs"){
+                setShowAboutUs("showAboutUs")
+                console.log('ShowAboutUs')
+            } else{
+                setShowAboutUs("hideAboutUs")  
+            }
+        }
+    }
+
+    const infoLinks = [
+        {
+            p: 'About us',
+            a1: 'Who we are',
+            a2: 'Our store',
+            a3: 'Customer Reviews',
+            navGroup: 'first ',
+            className: showAboutUs,
+            func: handleShowAboutUs
+        },
+        {
+            p: 'Categories',
+            a1: 'Woman fashion',
+            a2: 'Accessories',
+            a3: 'Kids',
+            navGroup: 'second ',
+            className: showCategories,
+            func:handleShowCategories
+        },
+        {
+            p: 'Help',
+            a1: 'Help',
+            a2: 'Size guide',
+            a3: 'Contact us',
+            navGroup: 'third ',
+            className: showHelp,
+            func: handleShowHelp
+        },
+        {
+            p: 'Payments & Delivery',
+            a1: 'Purchase terms',
+            a2: 'Guarantee',
+            a3: '',
+            navGroup: 'fourth ',
+            className: showPay,
+            func: handleShowPay
+        }
+    ]
 
     const handleOpenLinks = () => {
         if(showLink === "hide"){
@@ -118,29 +203,17 @@ export const Main = () => {
             </div>
             <div className="footerContainer">
                 <div className="footerNav">
-                    <div className="footerNav_group">
-                        <p>About us</p>
-                        <a href="">Who we are</a>
-                        <a href="">Our store</a>
-                        <a href="">Customer Reviews</a>
-                    </div>
-                    <div className="footerNav_group">
-                        <p>Categories</p>
-                        <a href="">Woman fashion</a>
-                        <a href="">Accessories</a>
-                        <a href="">Kids</a>
-                    </div>
-                    <div className="footerNav_group">
-                        <p>Help</p>
-                        <a href="">Customer service</a>
-                        <a href="">Size guide</a>
-                        <a href="">Contact us</a>
-                    </div>
-                    <div className="footerNav_group">
-                        <p>Payments & Delivery</p>
-                        <a href="">Purchase terms </a>
-                        <a href="">Guarantee</a>
-                    </div>
+                    { infoLinks.map(({ p, a1, a2, a3, func, className}) => {
+                        return(
+                            <div className="footerNav_group" >
+                                <p onClick= {func}>{p}</p>
+                                <a className={className} href="">{a1}</a>
+                                <a className={className} href="">{a2}</a>
+                                <a className={className} href="">{a3}</a>
+                            </div>
+                        )}
+                        
+                        )}
                     <div className="footerNav_group">
                         <p>Socials</p>
                         <a href="" className="svgLink">
